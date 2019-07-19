@@ -25,7 +25,7 @@ class Node {
     }
 
     preorder() {
-        var values = [];
+        let values = [];
 
         values.push(this.data);
 
@@ -41,7 +41,7 @@ class Node {
     }
 
     inorder() {
-        var values = [];
+        let values = [];
 
         if (this.left) {
             values = values.concat(this.left.inorder());
@@ -57,7 +57,7 @@ class Node {
     }
 
     postorder() {
-        var values = [];
+        let values = [];
 
         if (this.left) {
             values = values.concat(this.left.postorder());
@@ -73,8 +73,8 @@ class Node {
     }
 
     levelorder() {
-        var queue = [];
-        var order = [];
+        let queue = [];
+        let order = [];
         order.push(this);
 
         while (order.length) {
@@ -119,15 +119,15 @@ class Node {
             } else if (this.right === null) {
                 return this.left;
             } else {
-                this.data = this.left.rightmost().data;
+                this.data = this.left.rightmost.data;
                 this.left = this.left.delete(this.data);
             }
         }
         return this;
     }
 
-    leftmost() {
-        var node = this;
+    get leftmost() {
+        let node = this;
 
         while (node.left != null) {
             node = node.left;
@@ -136,8 +136,8 @@ class Node {
         return node;
     }
 
-    rightmost() {
-        var node = this;
+    get rightmost() {
+        let node = this;
 
         while (node.right != null) {
             node = node.right;
@@ -146,11 +146,11 @@ class Node {
         return node;
     }
 
-    maxnode() {
-        var max = this;
+    get maxnode() {
+        let max = this;
 
         if (this.left) {
-            let leftmax = this.left.maxnode();
+            let leftmax = this.left.maxnode;
 
             if (leftmax.data > max.data) {
                 max = leftmax;
@@ -158,7 +158,7 @@ class Node {
         }
 
         if (this.right) {
-            let rightmax = this.right.maxnode();
+            let rightmax = this.right.maxnode;
 
             if (rightmax.data > max.data) {
                 max = rightmax;
@@ -168,11 +168,11 @@ class Node {
         return max;
     }
 
-    minnode() {
-        var min = this;
+    get minnode() {
+        let min = this;
 
         if (this.left) {
-            let leftmin = this.left.minnode();
+            let leftmin = this.left.minnode;
 
             if (leftmin.data < min.data) {
                 min = leftmin;
@@ -180,7 +180,7 @@ class Node {
         }
 
         if (this.right) {
-            let rightmin = this.right.minnode();
+            let rightmin = this.right.minnode;
 
             if (rightmin.data < min.data) {
                 min = rightmin;
@@ -220,15 +220,17 @@ class BinaryTree {
         return this._root.search(value) != null;
     }
 
-    max() {
-        return this._root.maxnode.data;
-    }
-
-    max() {
-        return this._root.maxnode.data;
-    }
-
     remove(value) {
         this._root.delete(value);
+    }
+
+    get max() {
+        const maxnode = this._root.maxnode;
+        return maxnode != null ? maxnode.data : null;
+    }
+
+    get min() {
+        const minnode = this._root.minnode;
+        return minnode != null ? minnode.data : null;
     }
 }
